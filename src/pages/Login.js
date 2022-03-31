@@ -12,7 +12,6 @@ class Login extends React.Component {
       password: '',
       isDisabled: true,
     };
-    this.validateInputs = this.validateInputs.bind(this);
   }
 
   handleChange = ({ target }) => {
@@ -22,8 +21,7 @@ class Login extends React.Component {
     });
   }
 
-  // alguem@email.com
-  validateInputs() {
+  validateInputs = () => {
     const { email, password } = this.state;
     const MIN_PASSWORD_LENGTH = 6;
     const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
