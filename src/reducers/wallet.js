@@ -6,12 +6,12 @@ const INITIAL_STATE = {
   // expenses: [],
 };
 
-function wallet(state = INITIAL_STATE, action) {
-  switch (action.type) {
+function wallet(state = INITIAL_STATE, { type, value }) {
+  switch (type) {
   case ADD_CURRENCY_SUCCESS:
     return {
       ...state,
-      currencies: Object.entries(action.value)
+      currencies: Object.entries(value)
         .map((item) => item[0])
         .filter((item) => item !== 'USDT'),
     };
