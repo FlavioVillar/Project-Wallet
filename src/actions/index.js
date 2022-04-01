@@ -1,7 +1,11 @@
-// Coloque aqui suas actions
+import fetchAPI from '../services/economiaAPI';
+
 export const LOGIN = 'LOGIN';
 export const REQUEST_API = 'REQUEST_API';
 export const ADD_CURRENCY_SUCCESS = 'ADD_CURRENCY_SUCCESS';
+export const ADD_CURRENCY_FAIL = 'ADD_CURRENCY_FAIL';
+export const ADD_EXPENSE = 'ADD_EXPENSE';
+export const GET_TOTAL_VALUE = 'GET_TOTAL_VALUE';
 
 export const loginAction = (value) => ({
   type: LOGIN,
@@ -10,25 +14,31 @@ export const loginAction = (value) => ({
 
 export const requestAPI = () => ({ type: REQUEST_API });
 
-export const addCurrency = (value) => ({
+export const ActionAddCurrency = (value) => ({
   type: ADD_CURRENCY_SUCCESS,
   value,
 });
 
-// export const addExpense = (value) => ({
-//   type: 'ADD_EXPENSE',
-//   value,
-// });
+export const addCurrencyFail = (value) => ({
+  type: ADD_CURRENCY_FAIL,
+  value,
+});
 
-export function fetchAPI() {
-  return async (dispatch) => {
-    try {
-      dispatch(requestAPI());
-      const response = await fetch('https://economia.awesomeapi.com.br/json/all');
-      const data = await response.json();
-      dispatch(addCurrency(data));
-    } catch (error) {
-      console.error(error);
-    }
-  };
-}
+export const addExpense = (value) => ({
+  type: ADD_EXPENSE,
+  value,
+});
+
+export const actionTotalValue = (value) => ({
+  type: GET_TOTAL_VALUE,
+  value,
+});
+
+export const getFetchCurrency = () => async (dispatch) => {
+  dispatch(requestAPI());
+  try {
+    dispatch(ActionAddCurrency(await fetchAPI()));
+  } catch (error) {
+    dispatch(addCurrencyFail(error.message));
+  }
+};
