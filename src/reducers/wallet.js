@@ -4,14 +4,11 @@ import {
   ADD_CURRENCY_SUCCESS,
   ADD_CURRENCY_FAIL,
   ADD_EXPENSE,
-  GET_TOTAL_VALUE,
 } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
-  total: 0,
-  error: '',
 };
 
 function wallet(state = INITIAL_STATE, { type, value }) {
@@ -33,12 +30,6 @@ function wallet(state = INITIAL_STATE, { type, value }) {
     return {
       ...state,
       expenses: [...state.expenses, value],
-    };
-
-  case GET_TOTAL_VALUE:
-    return {
-      ...state,
-      total: value,
     };
 
   default:

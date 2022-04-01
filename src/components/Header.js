@@ -3,17 +3,24 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class Header extends Component {
-  render() {
-    // Dica dada em ajuda, colocar 0 quando chama a props para parar de dar erro no teste
-    const { userEmail, totalExpenses = 0 } = this.props;
-    return (
-      <header>
-        <p data-testid="email-field">{userEmail}</p>
-        <p data-testid="total-field">{totalExpenses}</p>
-        <p data-testid="header-currency-field">BRL</p>
-      </header>
-    );
-  }
+    sumTotalValue = () => {
+      const { expenses } = this.props;
+      const sumValue = expenses.map((item) => item)
+        .reduce((acc, { value, exchangeRates, currency }) => acc
+          + Number(value) * exchangeRates[currency].ask, 0);
+      return sumValue.toFixed(2);
+    }
+
+    render() {
+      const { userEmail } = this.props;
+      return (
+        <header>
+          <p data-testid="email-field">{userEmail}</p>
+          <p data-testid="total-field">{this.sumTotalValue()}</p>
+          <p data-testid="header-currency-field">BRL</p>
+        </header>
+      );
+    }
 }
 
 const mapStateToProps = (state) => ({
@@ -24,7 +31,11 @@ const mapStateToProps = (state) => ({
 
 Header.propTypes = {
   userEmail: PropTypes.string.isRequired,
-  totalExpenses: PropTypes.string.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    currency: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 export default connect(mapStateToProps)(Header);

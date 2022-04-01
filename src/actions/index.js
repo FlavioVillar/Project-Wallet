@@ -29,11 +29,6 @@ export const addExpense = (value) => ({
   value,
 });
 
-export const actionTotalValue = (value) => ({
-  type: GET_TOTAL_VALUE,
-  value,
-});
-
 export const getFetchCurrency = () => async (dispatch) => {
   dispatch(requestAPI());
   try {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getFetchCurrency, addExpense, actionTotalValue } from '../actions/index';
+import { getFetchCurrency, addExpense } from '../actions/index';
 import fetchAPI from '../services/economiaAPI';
 
 class FormToAddExpenses extends Component {
@@ -9,7 +9,7 @@ class FormToAddExpenses extends Component {
     super(props);
     this.state = {
       id: 0,
-      value: 0,
+      value: '',
       description: '',
       currency: 'USD',
       method: '',
@@ -29,22 +29,11 @@ class FormToAddExpenses extends Component {
     });
   };
 
-  getValue = (expenses, exchangeRates) => {
-    const { value, currency } = this.state;
-
-    return (expenses.reduce(
-      (acc, curr) => acc
-      + (parseFloat(curr.value) * curr.exchangeRates[curr.currency].ask), 0,
-    ) + (parseFloat(value) * exchangeRates[currency].ask)).toFixed(2);
-  }
-
   getExpenses = async () => {
-    const { getExpense, expenses, getTotal } = this.props;
+    const { getExpense, expenses } = this.props;
     this.setState({ id: expenses.length, exchangeRates: await fetchAPI() }, () => {
-      const { exchangeRates } = this.state;
       getExpense(this.state);
-      getTotal(this.getValue(expenses, exchangeRates));
-      this.setState({ value: 0, description: '', currency: 'USD', method: '', tag: '' });
+      this.setState({ value: '', description: '', currency: 'USD', method: '', tag: '' });
     });
   }
 
@@ -142,7 +131,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getCurrency: () => dispatch(getFetchCurrency()),
   getExpense: (item) => dispatch(addExpense(item)),
-  getTotal: (total) => dispatch(actionTotalValue(total)),
 });
 
 FormToAddExpenses.propTypes = {
@@ -157,7 +145,6 @@ FormToAddExpenses.propTypes = {
     method: PropTypes.string.isRequired,
     tag: PropTypes.string.isRequired,
   })).isRequired,
-  getTotal: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormToAddExpenses);
