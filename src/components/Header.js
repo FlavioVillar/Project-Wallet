@@ -32,7 +32,7 @@ const mapStateToProps = (state) => ({
 Header.propTypes = {
   userEmail: PropTypes.string.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.number.isRequired,
+    value: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     currency: PropTypes.string.isRequired,
   })).isRequired,

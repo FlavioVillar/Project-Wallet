@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class ExpenseTable extends Component {
   render() {
-    const { expenses } = this.props;
+    const { expenses, deleteExpense } = this.props;
     return (
       <table>
         <caption>Monthly savings</caption>
@@ -36,8 +36,16 @@ class ExpenseTable extends Component {
               <td>{Number(item.value) * item.exchangeRates[item.currency].ask}</td>
               <td>Real</td>
               <td>
-                <button type="button">Editar</button>
-                <button type="button">Excluir</button>
+                <button type="button" data-testid="edit-btn">Editar</button>
+                <button
+                  type="button"
+                  data-testid="delete-btn"
+                  onClick={ () => deleteExpense(item.id) }
+
+                >
+                  Excluir
+
+                </button>
               </td>
             </tr>
           ))}
@@ -57,14 +65,20 @@ const mapStateToProps = (state) => ({
   tag: state.wallet.tag,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  deleteExpense: (value) => dispatch({ type: 'DELETE_EXPENSE', value }),
+});
+
 ExpenseTable.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.number.isRequired,
+    value: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     currency: PropTypes.string.isRequired,
     method: PropTypes.string.isRequired,
     tag: PropTypes.string.isRequired,
   })).isRequired,
+  deleteExpense: PropTypes.func.isRequired,
+
 };
 
-export default connect(mapStateToProps)(ExpenseTable);
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseTable);

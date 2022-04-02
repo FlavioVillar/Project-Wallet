@@ -4,11 +4,13 @@ import {
   ADD_CURRENCY_SUCCESS,
   ADD_CURRENCY_FAIL,
   ADD_EXPENSE,
+  DELETE_EXPENSE,
 } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
+  test: [],
 };
 
 function wallet(state = INITIAL_STATE, { type, value }) {
@@ -30,6 +32,12 @@ function wallet(state = INITIAL_STATE, { type, value }) {
     return {
       ...state,
       expenses: [...state.expenses, value],
+    };
+
+  case DELETE_EXPENSE:
+    return {
+      ...state,
+      expenses: state.expenses.filter((item) => item.id !== value),
     };
 
   default:
