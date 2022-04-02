@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { loginAction } from '../actions';
+import wallet from '../img/wallet.png';
+import './Login.css';
 
 class Login extends React.Component {
   constructor(props) {
@@ -32,10 +34,13 @@ class Login extends React.Component {
     const { isDisabled, email, password } = this.state;
     const { login } = this.props;
     return (
-      <div>
-        <h1>Login</h1>
-        <form>
-          <div>
+      <div className="container-login">
+        <div className="Login">
+          <div className="img-wallet">
+            <img className="img-login" src={ wallet } alt="wallet" />
+          </div>
+          <h2 className="text-login">Login</h2>
+          <div className="container-input-login">
             <input
               data-testid="email-input"
               type="text"
@@ -55,16 +60,15 @@ class Login extends React.Component {
           </div>
           <Link to="/carteira">
             <button
+              className="button-login"
               type="button"
               disabled={ isDisabled }
               onClick={ () => { login(email); } }
             >
               Entrar
-
             </button>
           </Link>
-        </form>
-
+        </div>
       </div>
     );
   }

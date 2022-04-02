@@ -1,0 +1,61 @@
+.header {
+  background-color: rgb(95, 194, 140);
+  border-radius: 3px;
+  border-style: outset;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.container-total-value {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.header-email {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  padding-top: 25px;
+}
+
+.header-total-value {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  padding-top: 25px;
+}
+
+.header-BRL {
+  color: white;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 600;
+  margin: 0;
+  padding: 30px 12px 0;
+}
+
+.text-total-value {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 3px;
+  padding-top: 25px;
+}
+
+.img-wallet {
+  align-items: center;
+  display: flex;
+}
+
+img {
+  border-radius: 10px;
+  width: 80px;
+}
+

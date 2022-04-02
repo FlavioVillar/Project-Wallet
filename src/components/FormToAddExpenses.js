@@ -41,13 +41,14 @@ class FormToAddExpenses extends Component {
     const { currencies } = this.props;
     const { value, description, currency, method, tag } = this.state;
     return (
-      <div>
+      <div className="container-form-add">
         <form>
           <label htmlFor="value-input">
             Valor:
             <input
+              className="input-value"
               id="value-input"
-              type="number"
+              type="text"
               name="value"
               value={ value }
               placeholder="Valor"

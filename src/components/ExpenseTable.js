@@ -8,7 +8,7 @@ function ExpenseTable() {
   const { wallet: { expenses } } = useSelector((state) => state);
   const dispatch = useDispatch();
   return (
-    <table>
+    <table className="customers">
       <caption>Monthly expenses</caption>
       <thead>
         <tr>

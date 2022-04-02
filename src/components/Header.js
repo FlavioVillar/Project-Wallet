@@ -1,5 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import wallet from '../img/wallet.png';
+import './Header.css';
 
 // refatorado para o hooks
 function Header() {
@@ -13,10 +15,22 @@ function Header() {
   };
 
   return (
-    <header>
-      <p data-testid="email-field">{email}</p>
-      <p data-testid="total-field">{sumTotalValue()}</p>
-      <p data-testid="header-currency-field">BRL</p>
+    <header className="header">
+      <div className="img-wallet">
+        <img src={ wallet } alt="wallet" />
+        <p className="header-email" data-testid="email-field">{email}</p>
+      </div>
+      <div className="container-total-value">
+        <p className="text-total-value">Despesa Total: R$ </p>
+        <p
+          className="header-total-value"
+          data-testid="total-field"
+        >
+          {sumTotalValue()}
+
+        </p>
+        <p className="header-BRL" data-testid="header-currency-field">BRL</p>
+      </div>
     </header>
   );
 }
