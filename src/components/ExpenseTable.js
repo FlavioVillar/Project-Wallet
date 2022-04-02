@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class ExpenseTable extends Component {
   render() {
     const { expenses } = this.props;
-    // console.log(expenses.map((item) => item.value));
-    // console.log(expenses.map((item) => item.exchangeRates[item.currency].ask));
-    // console.log(expenses.map((item) => item.value * item.exchangeRates[item.currency].ask));
     return (
       <table>
         <caption>Monthly savings</caption>
@@ -58,5 +56,15 @@ const mapStateToProps = (state) => ({
   method: state.wallet.method,
   tag: state.wallet.tag,
 });
+
+ExpenseTable.propTypes = {
+  expenses: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    currency: PropTypes.string.isRequired,
+    method: PropTypes.string.isRequired,
+    tag: PropTypes.string.isRequired,
+  })).isRequired,
+};
 
 export default connect(mapStateToProps)(ExpenseTable);
