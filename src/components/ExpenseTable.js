@@ -47,6 +47,7 @@ function ExpenseTable() {
                     <td>Real</td>
                     <td>
                       <button
+                        className="btn-edit"
                         type="button"
                         data-testid="edit-btn"
                         name="edit"
@@ -55,6 +56,7 @@ function ExpenseTable() {
                         Editar despesa
                       </button>
                       <button
+                        className="delete-btn"
                         type="button"
                         data-testid="delete-btn"
                         onClick={ () => dispatch(actionDeleteExpense(item.id)) }

@@ -59,11 +59,12 @@ class FormToAddExpenses extends Component {
           <label htmlFor="description-input">
             Descrição:
             <input
+              className="input-description"
               id="description-input"
               type="text"
               name="description"
               value={ description }
-              placeholder="Valor"
+              placeholder="Descrição"
               data-testid="description-input"
               onChange={ this.handleChange }
             />
@@ -71,6 +72,7 @@ class FormToAddExpenses extends Component {
           <label htmlFor="currency-select">
             Moeda:
             <select
+              className="select-currency"
               id="currency-select"
               name="currency"
               value={ currency }
@@ -84,12 +86,14 @@ class FormToAddExpenses extends Component {
           <label htmlFor="method-input">
             Método de pagamento:
             <select
+              className="select-method"
               id="method-input"
               name="method"
               value={ method }
               data-testid="method-input"
               onChange={ this.handleChange }
             >
+              <option>Selecione</option>
               <option>Dinheiro</option>
               <option>Cartão de crédito</option>
               <option>Cartão de débito</option>
@@ -98,12 +102,14 @@ class FormToAddExpenses extends Component {
           <label htmlFor="tag-input">
             Categoria:
             <select
+              className="select-tag"
               id="tag-input"
               name="tag"
               value={ tag }
               data-testid="tag-input"
               onChange={ this.handleChange }
             >
+              <option>Selecione</option>
               <option>Alimentação</option>
               <option>Lazer</option>
               <option>Trabalho</option>
@@ -112,6 +118,7 @@ class FormToAddExpenses extends Component {
             </select>
           </label>
           <button
+            className="button-add"
             type="button"
             onClick={ this.getExpenses }
           >

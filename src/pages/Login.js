@@ -42,6 +42,7 @@ class Login extends React.Component {
           <h2 className="text-login">Login</h2>
           <div className="container-input-login">
             <input
+              className="input-login"
               data-testid="email-input"
               type="text"
               name="email"
@@ -50,6 +51,7 @@ class Login extends React.Component {
               onChange={ this.handleChange }
             />
             <input
+              className="input-login"
               data-testid="password-input"
               type="password"
               name="password"

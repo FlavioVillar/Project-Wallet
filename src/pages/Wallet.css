@@ -41,30 +41,118 @@ th {
 
 /* ! */
 .container-form-add {
-  align-items: center;
+  background-color: #404040;
   border: 1.5px solid #ddd;
   border-style: outset;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 15px 0;
 }
 
 label {
-  color: rgb(49, 108, 82);
-  font-size: 20px;
+  color: #ddd;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
   font-weight: 700;
   margin: 0;
-  padding: 0;
+  padding: 0 5px;
 }
 
-.input-value {
+.input-value , .input-description {
+  background-color: rgb(221, 221, 221);
+  background-image: none;
+  border: 2px solid #404040;
   border-radius: 3px;
-  color: whitesmoke;
-  font-size: 15px;
+  box-shadow: #404040 0 3px 6px;
+  color: #181616;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 10px;
+  padding: 10px;
+}
+
+.select-currency {
+
+  /* background-color: #404040; */
+  border-radius: 3px;
+  color: #404040;
+  font-size: 12px;
   font-weight: 700;
   margin: 0 10px;
   padding: 8px;
   transition: 0.1s;
-  width: 100px;
+  width: 80px;
+}
+
+.select-method {
+
+  /* background-color: #404040; */
+  border-radius: 3px;
+  color: #404040;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 10px;
+  padding: 8px;
+  transition: 0.1s;
+  width: 140px;
+}
+
+.select-tag {
+
+  /* background-color: #404040; */
+  border-radius: 3px;
+  color: #404040;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 10px;
+  padding: 8px;
+  transition: 0.1s;
+  width: 120px;
+}
+
+.button-add {
+  background-color: rgb(95, 194, 140);
+  border-radius: 3px;
+  color: #404040;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 10px;
+  padding: 10px;
+  text-align: center;
+  transition: 0.1s;
+}
+
+.button-add:hover {
+  background-color: #ffffff1f;
+  color: whitesmoke;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  border: 2px solid #f443367c;
+  border-radius: 6px;
+  color: white;
+  font-weight: 700;
+  margin: 3px;
+  padding: 3px 8px;
+}
+
+.delete-btn:hover {
+  background-color: #f443368e;
+  color: white;
+}
+
+.btn-edit {
+  background-color: #449ee7;
+  border: 2px solid #449ee7;
+  border-radius: 6px;
+  color: white;
+  font-weight: 700;
+  margin: 3px;
+  padding: 3px 8px;
+}
+
+.btn-edit:hover {
+  background-color: #449ee783;
+  color: white;
 }

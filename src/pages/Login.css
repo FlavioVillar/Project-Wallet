@@ -6,13 +6,15 @@
 }
 
 .text-login {
+  color: #ddd;
   text-align: center;
 }
 
-input {
+.input-login {
   background-color: #404040;
   background-image: none;
   border: none;
+  border-radius: 3px;
   box-shadow: none;
   color: white;
   margin: 10px;
@@ -30,11 +32,6 @@ input {
   width: 300px;
 }
 
-.Login .login-inputs {
-  display: flex;
-  flex-direction: column;
-}
-
 .container-input-login {
   align-items: center;
   display: flex;
@@ -42,13 +39,12 @@ input {
 }
 
 a {
-  color: rgb(102, 177, 243);
   text-decoration: none;
 }
 
 .button-login {
   border-radius: 3px;
-  color: rgb(22, 21, 21);
+  color: rgb(45, 194, 138);
   font-weight: 700;
   margin: 0 10px;
   padding: 10px;
