@@ -7,12 +7,13 @@ import './Login.css';
 
 // refatorado usando hooks
 
-// validate é criado para ser chamado no useEffect
+// validate é criado para ser chamado no useEffect, pois ele é chamado sempre que o email ou senha forem alterados
 function validate(email, password, btnDisabled) {
   const MIN_PASSWORD_LENGTH = 5;
   const validateEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/.test(email);
   const validatePassword = password.length > MIN_PASSWORD_LENGTH;
   const validInputs = [validateEmail, validatePassword];
+  // se todos os inputs forem válidos, o botão deve estar habilitado
   const isValid = validInputs.every((input) => input);
   if (isValid) {
     btnDisabled(false);
@@ -22,19 +23,23 @@ function validate(email, password, btnDisabled) {
 }
 
 function Login() {
+  // useState retorna um array com duas posições:
+  // 1. o valor do estado
+  // 2. uma função para atualizar o valor do estado
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // Hook useEffect como componentDidMount, componentDidUpdate, e componentWillUnmount combinados.
+  // Hook useEffect é como componentDidMount, componentDidUpdate, e componentWillUnmount combinados.
   useEffect(() => { validate(email, password, setIsDisabled); }, [email, password]);
 
   const handleClick = () => {
     dispatch(loginAction(email));
     history.push('/carteira');
   };
+
   return (
     <div className="container-login">
       <div className="Login">

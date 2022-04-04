@@ -7,9 +7,11 @@ import './Header.css';
 function Header() {
   const { user: { email }, wallet: { expenses } } = useSelector((state) => state);
 
+  // chama função para obter as despesas do usuário logado e retorna o total das mesmas
   const sumTotalValue = () => {
     const sumValue = expenses.map((item) => item)
       .reduce((acc, { value, exchangeRates, currency }) => acc
+      // multiplica o valor da despesa pelo valor da cotação da moeda
           + Number(value) * exchangeRates[currency].ask, 0);
     return sumValue.toFixed(2);
   };
@@ -27,7 +29,6 @@ function Header() {
           data-testid="total-field"
         >
           {sumTotalValue()}
-
         </p>
         <p className="header-BRL" data-testid="header-currency-field">BRL</p>
       </div>

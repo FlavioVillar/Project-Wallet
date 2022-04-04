@@ -1,158 +1,128 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { getFetchCurrency, addExpense } from '../actions/index';
-import fetchAPI from '../services/economiaAPI';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFetchCurrency, getFetchExpenses } from '../actions/index';
 
-class FormToAddExpenses extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: 0,
-      value: '',
-      description: '',
-      currency: 'USD',
-      method: '',
-      tag: '',
-      exchangeRates: {},
-    };
-  }
+// refatorado para o hooks
 
-  componentDidMount() {
-    const { getCurrency } = this.props;
-    getCurrency();
-  }
-
-  handleChange = ({ target }) => {
-    this.setState({
-      [target.name]: target.value,
-    });
+function FormToAddExpenses() {
+  const initialComponentState = {
+    value: '',
+    description: '',
+    currency: 'USD',
+    method: '',
+    tag: '',
   };
 
-  getExpenses = async () => {
-    const { getExpense, expenses } = this.props;
-    this.setState({ id: expenses.length, exchangeRates: await fetchAPI() }, () => {
-      getExpense(this.state);
-      this.setState({ value: '', description: '', currency: 'USD', method: '', tag: '' });
-    });
-  }
+  const dispatch = useDispatch();
 
-  render() {
-    const { currencies } = this.props;
-    const { value, description, currency, method, tag } = this.state;
-    return (
-      <div className="container-form-add">
-        <form>
-          <label htmlFor="value-input">
-            Valor:
-            <input
-              className="input-value"
-              id="value-input"
-              type="text"
-              name="value"
-              value={ value }
-              placeholder="Valor"
-              data-testid="value-input"
-              onChange={ this.handleChange }
-            />
-          </label>
-          <label htmlFor="description-input">
-            Descrição:
-            <input
-              className="input-description"
-              id="description-input"
-              type="text"
-              name="description"
-              value={ description }
-              placeholder="Descrição"
-              data-testid="description-input"
-              onChange={ this.handleChange }
-            />
-          </label>
-          <label htmlFor="currency-select">
-            Moeda:
-            <select
-              className="select-currency"
-              id="currency-select"
-              name="currency"
-              value={ currency }
-              onChange={ this.handleChange }
-            >
-              {currencies.map((itemCurrency) => (
-                <option key={ itemCurrency }>{itemCurrency}</option>
-              ))}
-            </select>
-          </label>
-          <label htmlFor="method-input">
-            Método de pagamento:
-            <select
-              className="select-method"
-              id="method-input"
-              name="method"
-              value={ method }
-              data-testid="method-input"
-              onChange={ this.handleChange }
-            >
-              <option>Selecione</option>
-              <option>Dinheiro</option>
-              <option>Cartão de crédito</option>
-              <option>Cartão de débito</option>
-            </select>
-          </label>
-          <label htmlFor="tag-input">
-            Categoria:
-            <select
-              className="select-tag"
-              id="tag-input"
-              name="tag"
-              value={ tag }
-              data-testid="tag-input"
-              onChange={ this.handleChange }
-            >
-              <option>Selecione</option>
-              <option>Alimentação</option>
-              <option>Lazer</option>
-              <option>Trabalho</option>
-              <option>Transporte</option>
-              <option>Saúde</option>
-            </select>
-          </label>
-          <button
-            className="button-add"
-            type="button"
-            onClick={ this.getExpenses }
+  // chama função para obter as moedas
+  useEffect(() => { dispatch(getFetchCurrency()); }, [dispatch]);
+
+  const [infoInForm, setInfoInForm] = useState(initialComponentState);
+
+  // chama função para obter as despesas
+  const { wallet: { currencies, expenses } } = useSelector((state) => state);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    // Pega os valores do formulário e atualiza o estado
+    setInfoInForm((itemPrev) => ({ ...itemPrev, [name]: value }));
+  };
+
+  // chama função para obter as despesas, passando o valor dos inputs e cria id para cada despesa
+  const handleClick = () => {
+    dispatch(getFetchExpenses({ ...infoInForm, id: expenses.length }));
+    setInfoInForm(initialComponentState);
+  };
+
+  return (
+    <div className="container-form-add">
+      <form>
+        <label htmlFor="value-input">
+          Valor:
+          <input
+            className="input-value"
+            id="value-input"
+            type="text"
+            name="value"
+            value={ infoInForm.value }
+            placeholder="Valor"
+            data-testid="value-input"
+            onChange={ handleChange }
+          />
+        </label>
+        <label htmlFor="description-input">
+          Descrição:
+          <input
+            className="input-description"
+            id="description-input"
+            type="text"
+            name="description"
+            value={ infoInForm.description }
+            placeholder="Descrição"
+            data-testid="description-input"
+            onChange={ handleChange }
+          />
+        </label>
+        <label htmlFor="currency-select">
+          Moeda:
+          <select
+            className="select-currency"
+            id="currency-select"
+            name="currency"
+            value={ infoInForm.currency }
+            onChange={ handleChange }
           >
-            Adicionar despesa
+            {currencies.map((itemCurrency) => (
+              <option key={ itemCurrency }>{itemCurrency}</option>
+            ))}
+          </select>
+        </label>
+        <label htmlFor="method-input">
+          Método de pagamento:
+          <select
+            className="select-method"
+            id="method-input"
+            name="method"
+            value={ infoInForm.method }
+            data-testid="method-input"
+            onChange={ handleChange }
+          >
+            <option>Selecione</option>
+            <option>Dinheiro</option>
+            <option>Cartão de crédito</option>
+            <option>Cartão de débito</option>
+          </select>
+        </label>
+        <label htmlFor="tag-input">
+          Categoria:
+          <select
+            className="select-tag"
+            id="tag-input"
+            name="tag"
+            value={ infoInForm.tag }
+            data-testid="tag-input"
+            onChange={ handleChange }
+          >
+            <option>Selecione</option>
+            <option>Alimentação</option>
+            <option>Lazer</option>
+            <option>Trabalho</option>
+            <option>Transporte</option>
+            <option>Saúde</option>
+          </select>
+        </label>
+        <button
+          className="button-add"
+          type="button"
+          onClick={ handleClick }
+        >
+          Adicionar despesa
 
-          </button>
-        </form>
-      </div>
-    );
-  }
+        </button>
+      </form>
+    </div>
+  );
 }
 
-const mapStateToProps = (state) => ({
-  currencies: state.wallet.currencies,
-  expenses: state.wallet.expenses,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getCurrency: () => dispatch(getFetchCurrency()),
-  getExpense: (item) => dispatch(addExpense(item)),
-});
-
-FormToAddExpenses.propTypes = {
-  getExpense: PropTypes.func.isRequired,
-  getCurrency: PropTypes.func.isRequired,
-  currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
-  expenses: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    value: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    currency: PropTypes.string.isRequired,
-    method: PropTypes.string.isRequired,
-    tag: PropTypes.string.isRequired,
-  })).isRequired,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FormToAddExpenses);
+export default FormToAddExpenses;
