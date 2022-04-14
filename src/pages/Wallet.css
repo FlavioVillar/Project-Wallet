@@ -18,29 +18,51 @@
   width: 100%;
 }
 
-td , th {
-  border: 1.5px solid #ddd;
-  border-style: outset;
+th {
+  background-color: rgb(49, 108, 82);
+  border: 3px solid rgba(255, 0, 0, 0);
+  border-bottom: 1.5px solid rgba(255, 0, 0, 0);
+  color: white;
+  font-size: 18px;
+  margin: 15px;
+  padding-bottom: 12px;
+  padding-top: 12px;
+  text-align: center;
+}
+
+td {
+  border: 2px solid #404040;
   padding: 8px;
 }
 
-tr:nth-child( even ) {
-  background-color: #f2f2f2;
-  color: #333;
+
+tr:nth-child( odd ) {
+  background-color: rgb(221, 221, 221);
+  color: rgb(64, 64, 64);
+  font-weight: 600;
 }
 
-tr:hover { background-color: rgb(165, 161, 161);}
+tr:nth-child( even ) {
+  background-color: rgb(127, 128, 128);
+  color: #f2f2f2;
+  font-weight: 600;
+}
 
-th {
-  background-color: rgb(49, 108, 82);
-  color: white;
-  padding-bottom: 12px;
-  padding-top: 12px;
-  text-align: left;
+tr:nth-child( even ):hover {
+  background-color: #1b2f31;
+  color: rgb(95, 194, 140);
+  font-weight: 900;
+}
+
+tr:nth-child( odd ):hover {
+  background-color: #1b2f31;
+  color: rgb(95, 194, 140);
+  font-weight: 900;
 }
 
 /* ! */
-.container-form-add {
+.form-input-header {
+  align-items: center;
   background-color: #404040;
   border: 1.5px solid #ddd;
   border-style: outset;
@@ -64,95 +86,146 @@ label {
   border: 2px solid #404040;
   border-radius: 3px;
   box-shadow: #404040 0 3px 6px;
-  color: #181616;
-  font-size: 12px;
+  color: #404040;
+  font-size: 16px;
   font-weight: 700;
   margin: 10px;
   padding: 10px;
 }
 
-.select-currency {
+.input-value {
+  width: 85px;
+}
 
-  /* background-color: #404040; */
-  border-radius: 3px;
+.input-value::placeholder {
   color: #404040;
   font-size: 12px;
+  font-style: italic;
+}
+
+.input-description {
+  width: 300px;
+}
+
+.input-description::placeholder {
+  color: #404040;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.select-currency {
+  border-radius: 3px;
+  color: #404040;
+  font-size: 16px;
   font-weight: 700;
   margin: 0 10px;
-  padding: 8px;
-  transition: 0.1s;
+  padding: 10px;
+  transition: 2s;
   width: 80px;
 }
 
 .select-method {
-
-  /* background-color: #404040; */
   border-radius: 3px;
   color: #404040;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   margin: 0 10px;
-  padding: 8px;
+  padding: 10px;
+  transition: 0.1s;
+  width: 180px;
+}
+
+.select-tag {
+  border-radius: 3px;
+  color: #404040;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 10px;
+  padding: 10px;
   transition: 0.1s;
   width: 140px;
 }
 
-.select-tag {
-
-  /* background-color: #404040; */
-  border-radius: 3px;
-  color: #404040;
-  font-size: 12px;
-  font-weight: 700;
-  margin: 0 10px;
-  padding: 8px;
-  transition: 0.1s;
-  width: 120px;
-}
-
 .button-add {
-  background-color: rgb(95, 194, 140);
-  border-radius: 3px;
-  color: #404040;
-  font-size: 12px;
-  font-weight: 700;
-  margin: 0 10px;
+  align-items: center;
+  background-color: #1b2f31;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 0 2px 2px rgb(95, 194, 140);
+  color: rgb(95, 194, 140);
+  display: flex;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  margin-left: 60px;
   padding: 10px;
   text-align: center;
-  transition: 0.1s;
+  transition: 0.3s;
 }
 
 .button-add:hover {
-  background-color: #ffffff1f;
-  color: whitesmoke;
+  background-color: rgb(95, 194, 140);
+  box-shadow: 0 0 2px 2px rgb(10, 10, 10);
+  color: #1b2f31;
 }
 
 .delete-btn {
-  background-color: #f44336;
-  border: 2px solid #f443367c;
-  border-radius: 6px;
-  color: white;
-  font-weight: 700;
-  margin: 3px;
-  padding: 3px 8px;
+  background-color: #c12f31;
+  background-image: url('https://www.sinalverdelixeiras.com.br/wp-content/uploads/2021/07/lixeiras-1.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 0 2px 2px rgb(10, 10, 10);
+  color: rgba(245, 245, 245, 0);
+  margin-left: 10px;
+  padding: 5px 15px;
+  text-align: center;
+  transition: 0.1s;
+  width: 45px;
 }
 
 .delete-btn:hover {
-  background-color: #f443368e;
-  color: white;
+  background-color: #f44336;
+  box-shadow: 0 0 2px 2px #c12f31;
+  color: rgba(245, 245, 245, 0);
+
 }
 
 .btn-edit {
-  background-color: #449ee7;
-  border: 2px solid #449ee7;
-  border-radius: 6px;
-  color: white;
+  background-color: rgb(22, 109, 176);
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 0 2px 2px rgb(10, 10, 10);
+  color: whitesmoke;
   font-weight: 700;
-  margin: 3px;
-  padding: 3px 8px;
+  padding: 5px 15px;
+  text-align: center;
+  transition: 0.1s;
+  width: 70px;
 }
 
 .btn-edit:hover {
-  background-color: #449ee783;
+  background-color: rgb(70, 159, 231);
+  box-shadow: 0 0 2px 2px rgb(22, 109, 176);
   color: white;
+}
+
+.button-save {
+  background-color: #1b2f31;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 0 2px 2px rgb(95, 194, 140);
+  color: rgb(95, 194, 140);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 5px 15px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.button-save:hover {
+  background-color: rgb(95, 194, 140);
+  color: #1b2f31;
 }

@@ -3,6 +3,7 @@ import {
   ADD_CURRENCY_SUCCESS,
   ADD_EXPENSE,
   DELETE_EXPENSE,
+  EDIT_TABLE_ROW,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -15,6 +16,7 @@ function wallet(state = INITIAL_STATE, { type, value }) {
   case ADD_CURRENCY_SUCCESS:
     return {
       ...state,
+      // currencies: [...state.currencies, value], // não funciona pois o value é um objeto e não um array de objetos
       currencies: Object.entries(value)
         .map((item) => item[0])
         .filter((item) => item !== 'USDT'),
@@ -30,6 +32,17 @@ function wallet(state = INITIAL_STATE, { type, value }) {
     return {
       ...state,
       expenses: state.expenses.filter((item) => item.id !== value),
+    };
+
+  case EDIT_TABLE_ROW:
+    return {
+      ...state,
+      expenses: state.expenses.map((item) => {
+        if (item.id === value.id) {
+          return value;
+        }
+        return item;
+      }),
     };
 
   default:

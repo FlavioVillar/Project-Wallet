@@ -7,25 +7,33 @@
 
 .text-login {
   color: #ddd;
+  font-size: 30px;
+  font-weight: 900;
   text-align: center;
 }
 
 .input-login {
-  background-color: #404040;
+  background-color: rgb(221, 221, 221);
   background-image: none;
-  border: none;
+  border: 2px solid #404040;
   border-radius: 3px;
-  box-shadow: none;
-  color: white;
+  box-shadow: #404040 0 3px 6px;
+  color: #404040;
+  font-size: 16px;
+  font-weight: 700;
   margin: 10px;
   padding: 10px;
 }
 
+.input-login::placeholder {
+  text-align: center;
+}
+
 .Login {
   align-items: center;
-  background-color: rgb(13, 17, 23);
+  background-color: #1b2f31;
   border-radius: 4px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
+  box-shadow: 0 0 2px 2px rgb(95, 194, 140);
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -43,22 +51,37 @@ a {
 }
 
 .button-login {
-  border-radius: 3px;
-  color: rgb(45, 194, 138);
-  font-weight: 700;
-  margin: 0 10px;
+  background-color: rgb(95, 194, 140);
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 0 2px 2px rgb(10, 10, 10);
+  color: #1b2f31;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  margin: 30px;
   padding: 10px;
   text-align: center;
-  transition: 0.1s;
+  transition: 0.3s;
+  width: 100px;
 }
 
 .button-login:hover {
-  background-color: #ffffff1f;
-  color: whitesmoke;
+  background-color: rgb(95, 194, 140);
+  box-shadow: 0 0 2px 2px rgb(10, 10, 10);
+  color: #1b2f31;
+}
+
+.button-login:disabled , .button-login[ disabled ] {
+  background-color: #1b2f31;
+  box-shadow: 0 0 2px 2px rgb(95, 194, 140);
+  color: rgb(95, 194, 140);
 }
 
 .img-login {
   border-radius: 10px;
+  margin-bottom: 20px;
+  margin-top: 30px;
   width: 200px;
 }
 

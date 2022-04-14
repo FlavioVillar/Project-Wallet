@@ -37,7 +37,7 @@ function FormToAddExpenses() {
 
   return (
     <div className="container-form-add">
-      <form>
+      <form className="form-input-header">
         <label htmlFor="value-input">
           Valor:
           <input
@@ -46,7 +46,7 @@ function FormToAddExpenses() {
             type="text"
             name="value"
             value={ infoInForm.value }
-            placeholder="Valor"
+            placeholder="Digite o valor..."
             data-testid="value-input"
             onChange={ handleChange }
           />
@@ -59,7 +59,7 @@ function FormToAddExpenses() {
             type="text"
             name="description"
             value={ infoInForm.description }
-            placeholder="Descrição"
+            placeholder="Descreva o gasto..."
             data-testid="description-input"
             onChange={ handleChange }
           />
@@ -70,6 +70,7 @@ function FormToAddExpenses() {
             className="select-currency"
             id="currency-select"
             name="currency"
+            data-testid="currency-input"
             value={ infoInForm.currency }
             onChange={ handleChange }
           >
@@ -116,9 +117,9 @@ function FormToAddExpenses() {
           className="button-add"
           type="button"
           onClick={ handleClick }
+          data-testid="edit-btn"
         >
           Adicionar despesa
-
         </button>
       </form>
     </div>
